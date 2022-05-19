@@ -1,0 +1,46 @@
+.facts{
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+
+    position: absolute;
+    width: 1366px;
+    height: 768px;
+    left: 0px;
+    top: 0px;
+
+}
+button.facts{
+    /* Fact */
+
+    position: static;
+    width: 1346px;
+    height: 100px;
+    left: 10px;
+    top: 560px;
+
+    border-radius: 50px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 5;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 10px 0px;
+    font-family:fantasy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 64px;
+    line-height: 73px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}

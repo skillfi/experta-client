@@ -1,0 +1,44 @@
+.main{
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+    position: absolute;
+    width: 1300px;
+    height: 709px;
+    left: 34px;
+    top: 33px;
+}
+.main-button{
+    position: static;
+    width: 1280px;
+    height: 129px;
+    left: 10px;
+    top: 379.5px;
+
+    border-radius: 15px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 50px 0px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 64px;
+    line-height: 73px;
+    /* identical to box height */
+
+    /* display: flex; */
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}
