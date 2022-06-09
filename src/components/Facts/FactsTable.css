@@ -1,0 +1,26 @@
+.fact-enter {
+    opacity: translateX(0px);
+}
+.fact-enter-active {
+    opacity: translateX(0px);
+    transition: all 500ms ease-in;
+}
+.fact-exit {
+    opacity: 1;
+}
+.fact-exit-active {
+    transform: translateX(-350px);
+    transition: all 500ms ease-in;
+}
+.group {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 60px;
+    /* width: 1316px; */
+    /* height: 253px; */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}

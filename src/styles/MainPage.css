@@ -1,44 +1,42 @@
 .main{
-    /* Auto layout */
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 316px 42px;
+    gap: 10px;
 
-    position: absolute;
-    width: 1300px;
-    height: 709px;
-    left: 34px;
-    top: 33px;
+    position: relative;
+    /* width: 1364px; */
+    /* height: 761px; */
+
+    background: #FFFFFF;
 }
-.main-button{
-    position: static;
+.button{
     width: 1280px;
     height: 129px;
-    left: 10px;
-    top: 379.5px;
-
     border-radius: 15px;
-
     /* Inside auto layout */
-
     flex: none;
-    order: 1;
-    align-self: stretch;
+    order: 0;
     flex-grow: 0;
-    margin: 50px 0px;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    box-sizing: border-box;
+    left: 0px;
+    top: -0.5px;
+    background: linear-gradient(0deg, rgba(16, 48, 214, 0.25), rgba(16, 48, 214, 0.25)), linear-gradient(0deg, rgba(235, 15, 15, 0.2), rgba(235, 15, 15, 0.2)), #32CF67;
+    mix-blend-mode: hard-light;
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    font-family: 'Rokkitt';
     font-style: normal;
-    font-weight: normal;
+    font-weight: 400;
     font-size: 64px;
     line-height: 73px;
     /* identical to box height */
-
     /* display: flex; */
     align-items: center;
     text-align: center;
-
     color: #000000;
+    cursor: pointer;
 }

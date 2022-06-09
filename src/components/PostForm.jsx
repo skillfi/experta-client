@@ -1,7 +1,6 @@
 import React from "react";
-import "../styles/PostForm.css"
 import Server from '../API/Server';
-// import axios from "axios";
+import MyInput from "./MyInput/MyInput";
 
 class PostForm extends React.Component{
 
@@ -19,10 +18,21 @@ class PostForm extends React.Component{
         };
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.getRecommend = this.getRecommend.bind()
         
     }
 
+    getRecommend = async() => {
+        const response = await (await Server.getRecommendation(this.props._id)).data
+        var recommendation = new String();
+        response.data.map((message, index) => 
+            recommendation = recommendation + '\n' +new String(message.recommendation)
+        )
+        return alert(recommendation);
+    }
+
     handleChange = (event) => {
+        event.preventDefault()
         return this.setState({
             [event.target.name]: event.target.value
         });
@@ -40,90 +50,53 @@ class PostForm extends React.Component{
         formData.append("Weather", this.state.Weather)
         formData.append("Time", this.state.Time)
         const response = await Server.addNew(formData)
-        return document.location = `/fact/${response.data[0]._id}/recommendations`;
     }
     render(){
         return(
             <form onSubmit={this.handleSubmit}>
-                {/* <PatternArea/> */}
-                <div id="meat">
-                    <p>Виберіть яку частину м'яса будете готовити</p>
-                    <input type={'radio'} name={'Meat'} onChange={this.handleChange}
-                        value={[ "Шия", "Корейка" ]} id={'radio'}/> "Шия", "Корейка" 
-                    <input type={'radio'} name={'Meat'} onChange={this.handleChange}
-                        value={[ "Шия", "Вирізка" ]} id={'radio'}/> "Шия", "Вирізка"
-                    <input type={'radio'} name={'Meat'} onChange={this.handleChange}
-                        value={[ "Корейка", "Вирізка" ]} id={'radio'}/> "Корейка", "Вирізка"
-                </div>
-                <div id="action">
-                    <p>Виберіть маринад</p>
-                    <input type={'radio'} name={'Marinade'} onChange={this.handleChange}
-                        value={'Кефір'} id={'radio'}/> Кефір 
-                    <input type={'radio'} name={'Marinade'} onChange={this.handleChange}
-                        value={'Вино'} id={'radio'}/> Вино
-                    <input type={'radio'} name={'Marinade'} onChange={this.handleChange}
-                        value={'Оцет'} id={'radio'}/> Оцет
-                </div>
-                <div id="degree">
-                    <p>Виберіть ступінь вугілля</p>
-                    <input type={'radio'} name={'Coal'} onChange={this.handleChange}
-                        value={'Яблуня'} id={'radio'}/> Яблуня 
-                    <input type={'radio'} name={'Coal'} onChange={this.handleChange}
-                        value={'Слива'} id={'radio'}/> Слива
-                    <input type={'radio'} name={'Coal'} onChange={this.handleChange}
-                        value={'Абрикоса'} id={'radio'}/> Абрикоса
-                </div>
-                <div id="pardone">
-                    <p>Якщо нема вугілля, то виберіть сухі дрова</p>
-                    <input type={'radio'} name={'Woods'} onChange={this.handleChange}
-                        value={'Клен'} id={'radio'}/> Клен
-                    <input type={'radio'} name={'Woods'} onChange={this.handleChange}
-                        value={'Дуб'} id={'radio'}/> Дуб
-                    <input type={'radio'} name={'Woods'} onChange={this.handleChange}
-                        value={'Тополя'} id={'radio'}/> Тополя
-                    <input type={'radio'} name={'Woods'} onChange={this.handleChange}
-                        value={'Осика'} id={'radio'}/> Осика
-                    <input type={'radio'} name={'Woods'} onChange={this.handleChange}
-                        value={'Верба'} id={'radio'}/> Верба
-                    <input type={'radio'} name={'Woods'} onChange={this.handleChange}
-                        value={'Ліщини'} id={'radio'}/> Ліщини
-                    <input type={'radio'} name={'Woods'} onChange={this.handleChange}
-                        value={'Каштана'} id={'radio'}/> Каштана
-                    <input type={'radio'} name={'Woods'} onChange={this.handleChange}
-                        value={'Липи'} id={'radio'}/> Липи
-                </div>
-                <div id="turned">
-                    <p>ГОрів вогонь під час жарки шашлику?</p>
-                    <input type={'radio'} name={'Fire'} onChange={this.handleChange}
-                        value={'true'} id={'radio'}/> Так 
-                    <input type={'radio'} name={'Fire'} onChange={this.handleChange}
-                        value={'false'} id={'radio'}/> Ні
-                </div>
-                <div id="cooked">
-                    <p>Погода в день приготування</p>
-                    <input type={'radio'} name={'Weather'} onChange={this.handleChange}
-                        value={'Дощ'} id={'radio'}/> Дощ 
-                    <input type={'radio'} name={'Weather'} onChange={this.handleChange}
-                        value={'Сильний вітер'} id={'radio'}/> Сильний вітер
-                    <input type={'radio'} name={'Weather'} onChange={this.handleChange}
-                        value={'Сонячно'} id={'radio'}/> Сонячно
-                    <input type={'radio'} name={'Weather'} onChange={this.handleChange}
-                        value={'Без вітру'} id={'radio'}/> Без вітру
-                </div>
-                <div id="time">
-                    <p>Скільки годин жариться?</p>
-                    <p>Time 1 to 25</p>
-                    <input type={'radio'} name={'Time'} min={1} max={25} onChange={this.handleChange}
-                        value={5}id={'radio'}/> 5
-                    <input type={'radio'} name={'Time'} min={1} max={25} onChange={this.handleChange}
-                        value={10}id={'radio'}/> 10
-                    <input type={'radio'} name={'Time'} min={1} max={25} onChange={this.handleChange}
-                        value={15}id={'radio'}/> 15
-                    <input type={'radio'} name={'Time'} min={1} max={25} onChange={this.handleChange}
-                        value={20}id={'radio'}/> 20
-                    <input type={'radio'} name={'Time'} min={1} max={25} onChange={this.handleChange}
-                        value={25}id={'radio'}/> 25
-                </div>
+                <MyInput
+                    value={this.state.Meat}
+                    onChange={this.handleChange}
+                    type={"text"}
+                    placeholder={"Виберіть тип м'яса: Шия, Корейка, Стегно, Курка"}
+                    name={'Meat'}
+                /><MyInput
+                    value={this.state.Marinade}
+                    onChange={this.handleChange}
+                    type={"text"}
+                    placeholder={"Виберіть маринад: Кефір, Вино, Оцет"}
+                    name={'Marinade'}
+                /><MyInput
+                    value={this.state.Coal}
+                    onChange={this.handleChange}
+                    type={"text"}
+                    placeholder={"Виберіть вугілля: Яблуння, Слива, Абрикоса"}
+                    name={'Coal'}
+                /><MyInput
+                    value={this.state.Woods}
+                    onChange={this.handleChange}
+                    type={"text"}
+                    placeholder={"Виберіть суху дрова: Клен, Дуб, Тополя, Осика, Верба, Ліщина, Каштан, Липа"}
+                    name={'Woods'}
+                /><MyInput
+                    value={this.state.Fire}
+                    onChange={this.handleChange}
+                    type={"text"}
+                    placeholder={"Наявність вогню: true, false"}
+                    name={'Fire'}
+                /><MyInput
+                    value={this.state.Weather}
+                    onChange={this.handleChange}
+                    type={"text"}
+                    placeholder={"Погодні умови: Дощ, Сильний вітер, Сонячно, Без вітру"}
+                    name={'Weather'}
+                /><MyInput
+                    value={this.state.Time}
+                    onChange={this.handleChange}
+                    type={"text"}
+                    placeholder={"Час приготування: від 0 до 25"}
+                    name={'Time'}
+                />
                 <p><input type={'submit'} name='Send'></input></p> 
             </form>
         )

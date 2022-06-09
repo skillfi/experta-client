@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {TransitionGroup} from "react-transition-group";
 import { useParams } from 'react-router-dom';
-import { useFetching } from "../hooks/useFetching";
-import Server from '../API/Server';
+import { useFetching } from "../../hooks/useFetching";
+import Server from '../../API/Server';
 
 
 export default function RecommendationRoute(){
@@ -31,7 +31,7 @@ export default function RecommendationRoute(){
             <TransitionGroup>
             {
                 state.map((message, index)=>
-                    <li>{message.recomendation}</li>
+                    <li>{message.recommendation}</li>
                 )
             }
             </TransitionGroup>      

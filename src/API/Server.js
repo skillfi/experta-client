@@ -26,7 +26,6 @@ export default class Server{
                 http+host+':'+port+'/api/facts', data
             )
         ).data
-        alert(resp)
         return resp;
     }
 
@@ -34,7 +33,7 @@ export default class Server{
         const resp = await (
             await axios.get(
                 http+host+':'+port+'/api/fact/get-recommendation/'+fact_id
-                )
+            )
         )
         return resp
     }
@@ -43,6 +42,15 @@ export default class Server{
         const resp = await (
             await axios.delete(
                 http+host+':'+port+'/api/fact/'+fact_id
+            )
+        ).data
+        return resp
+    }
+
+    static async delByFact(fact_id){
+        const resp = await (
+            await axios.delete(
+                http+host+':'+port+'/api/rule/fact/'+fact_id
             )
         ).data
         return resp
